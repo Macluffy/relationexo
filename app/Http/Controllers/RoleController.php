@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $data = ::all();
+        return view('pages.Commentaire',compact('data'));
     }
 
     /**

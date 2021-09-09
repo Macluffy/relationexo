@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ArticleFactory extends Factory
@@ -22,7 +23,12 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
+        
+                "nom" =>$this->faker->lastName(),
+                "description" => $this->faker->text(),
+                "date" => $this->faker->date('d-m-Y'),
+                "User_id" => $this->faker->numberBetween(1, count(User::all())),   
         ];
     }
 }

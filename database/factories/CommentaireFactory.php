@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Article;
 use App\Models\Commentaire;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,11 @@ class CommentaireFactory extends Factory
     public function definition()
     {
         return [
-            //
-        ];
+        
+        
+            "contenu" => $this->faker->text(),
+            "article_id" => $this->faker->numberBetween(1, count(Article::all())),
+        
+    ];
     }
 }

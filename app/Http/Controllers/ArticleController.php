@@ -14,7 +14,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $data = Article::all();
+        return view('pages.article',compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('layoutsA.create'); 
     }
 
     /**
@@ -35,7 +36,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            "nom"=>["required", "min:1", "max:200"],
+            "description"=>["required", "min:1", "max:200"],
+            "date"=>["required", "min:1", "max:200"],
+            "user_id"=>["required", "min:1", "max:200"],
+        ]);
+        $data = new Article;
+        $data->nom = $request->nom;
+        $data->description = $request->description;
+        $data->date = $request->date;
+        $data->user_id = $request->user_id;
+        $data->save();
+        return redirect()->route('articles.index');
+    
     }
 
     /**
@@ -46,7 +60,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        $data = $article;
+        return view('layoutsA.show',compact('article'));
     }
 
     /**
@@ -57,7 +72,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('layoutsA.edit',compact('article'));
     }
 
     /**
@@ -69,7 +84,19 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        request()->validate([
+            "nom"=>["required", "min:1", "max:200"],
+            "description"=>["required", "min:1", "max:200"],
+            "date"=>["required", "min:1", "max:200"],
+            "user_id"=>["required", "min:1", "max:200"],
+        ]);
+      
+        $article->nom = $request->nom;
+        $article->description = $request->description;
+        $article->date = $request->date;
+        $article->user_id = $request->user_id;
+        $article->save();
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -80,6 +107,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }
