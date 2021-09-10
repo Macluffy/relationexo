@@ -19,5 +19,6 @@ class roleSeeder extends Seeder
             ["nom"=>"editeur"],
             ["nom"=>"visiteur"],
         ]);
+        
     }
 }

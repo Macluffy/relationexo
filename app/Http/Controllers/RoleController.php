@@ -14,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = ::all();
-        return view('pages.Commentaire',compact('data'));
+        $data = Role::all();
+        return view('pages.role',compact('data'));
     }
 
     /**
@@ -25,7 +25,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('layoutsR.create');
     }
 
     /**
@@ -36,7 +37,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            "nom"=>["required", "min:1", "max:200"],
+        ]);
+        $data = new Role;
+        $data->nom = $request->nom;
+        $data->save();
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -47,7 +54,8 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        
+        return view('layoutsR.show',compact('role'));
     }
 
     /**
@@ -58,7 +66,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('layoutsR.edit',compact('role'));
     }
 
     /**
@@ -70,7 +78,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        request()->validate([
+            
+            "nom"=>["required", "min:1", "max:200"],
+            
+        ]);
+        
+
+        $role->nom = $request->nom;
+        $role->save();
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -81,6 +99,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect()->route('roles.index');
     }
 }

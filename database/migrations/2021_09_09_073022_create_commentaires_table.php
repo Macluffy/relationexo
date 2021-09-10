@@ -19,7 +19,7 @@ class CreateCommentairesTable extends Migration
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
             $table->string('contenu');
-            $table->foreingId('article_id')->constrained('articles','id');
+            $table->foreignId('article_id')->constrained('articles','id');
             $table->timestamps();
         });
     }

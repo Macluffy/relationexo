@@ -6,11 +6,11 @@
 
 <div class="card" style="width: 18rem;">
     <ul class="list-group list-group-flush">
-        <li><img src="{{ $video->img }}" alt=""></li>
-      <li class="list-group-item">{{ $video->titre }}</li>
-      <li class="list-group-item">{{ $video->description }}</li>
-      <li class="list-group-item">{{ $video->url }}</li>
-      <li class="list-group-item">{{ $video->duration }}</li>
+        
+      <li class="list-group-item">{{ $article->nom }}</li>
+      <li class="list-group-item">{{ $article->description }}</li>
+      <li class="list-group-item">{{ $article->date }}</li>
+      <li class="list-group-item">{{ $article->user_id }}</li>
     </ul>
   </div>
   </form>

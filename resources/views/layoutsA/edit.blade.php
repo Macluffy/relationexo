@@ -12,29 +12,32 @@
 
 </div>
 @endif
-<form enctype="multipart/form-data" action="{{ route('videos.store') }}" method="post">
-    @csrf
+<form enctype="multipart/form-data" action="{{ route('articles.store') }}" method="post">
+  @csrf
 <div class="mb-3">
-    <label  class="form-label">Url</label>
-    <input type="text" class="form-control"  placeholder="url" name="url" value="{{$video->url }}" >
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Image</label>
-    <input type="file" class="form-control"  name="img" placeholder="image" value="{{$video->img }}" >
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Duration</label>
-    <input type="text" class="form-control" name="duration" placeholder="duration"  value="{{$video->duration }}" >
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Titre</label>
-    <input type="text" class="form-control" name="titre"  placeholder="Titre" value="{{$video->titre }}" >
-  </div>
+  <label  class="form-label">Nom</label>
+  <input type="text" class="form-control"  placeholder="nom" name="nom" value="{{$article->nom}}" >
+</div>
+<div class="mb-3">
+  <label  class="form-label">Description</label>
+  <input type="text" class="form-control"  name="description" placeholder="description" value="{{$article->description}}">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Date</label>
+  <input type="text" class="form-control" name="date" placeholder="date" value="{{$article->date}}">
+</div>
+<div class="mb-3">
+  <select class="form-select" aria-label="Default select example" name="user_id">
 
-  <div class="mb-3">
-    <label  class="form-label">Description</label>
-    <textarea class="form-control" rows="3" name="description"  value="{{$video->description }}" ></textarea>
-  </div>
+    @foreach ($data as $value)
+        <option value="{{$value->id}} ">{{$value->prenom}} </option>
+    @endforeach
+    
+  </select>
+
+
+</div>
+
 
   
 <button type="submit" >Create</button>

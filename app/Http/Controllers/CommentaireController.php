@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,7 @@ class CommentaireController extends Controller
     public function index()
     {
         $data = Commentaire::all();
-        return view('pages.Commentaire',compact('data'));
+        return view('pages.commentaire',compact('data'));
     }
 
     /**
@@ -26,7 +27,8 @@ class CommentaireController extends Controller
      */
     public function create()
     {
-        return view('layoutsC.create');
+        $data = Article::all();
+        return view('layoutsC.create',compact('data'));
     }
 
     /**
@@ -58,7 +60,6 @@ class CommentaireController extends Controller
      */
     public function show(Commentaire $commentaire)
     {
-        $data = $commentaire;
         return view('layoutsC.show',compact('commentaire'));
     }
 
@@ -70,8 +71,8 @@ class CommentaireController extends Controller
      */
     public function edit(Commentaire $commentaire)
     {
-        
-        return view('layoutsC.edit',compact('commentaire'));
+        $data = Article::all();
+        return view('layoutsC.edit',compact('commentaire','data'));
     }
 
     /**
@@ -93,7 +94,7 @@ class CommentaireController extends Controller
         $commentaire->contenu = $request->contenu;
         $commentaire->article_id = $request->article_id;
         $commentaire->save();
-      
+
         return redirect()->route('commentaires.index');
 
 

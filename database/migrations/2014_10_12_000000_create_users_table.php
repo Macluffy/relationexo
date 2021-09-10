@@ -23,14 +23,14 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('photo');
-            $table->foreingnId('role_id')->constrained('roles','id');
+            $table->foreignId('role_id')->constrained('roles','id');
             $table->rememberToken();
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.ç
      *
      * @return void
      */

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -25,7 +26,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('layoutsA.create'); 
+        $data = User::all();
+        return view('layoutsA.create',compact('data')); 
     }
 
     /**
@@ -60,7 +62,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $data = $article;
+        
         return view('layoutsA.show',compact('article'));
     }
 
@@ -72,7 +74,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('layoutsA.edit',compact('article'));
+        $data = User::all();
+        return view('layoutsA.edit',compact('article','data'));
     }
 
     /**

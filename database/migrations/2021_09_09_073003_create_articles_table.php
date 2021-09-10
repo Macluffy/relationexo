@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('nom');
             $table->string('description');
             $table->string('date');
-            $table->foreingId('user_id')->constrained('users','id');
+            $table->foreignId('user_id')->constrained('users','id');
             $table->timestamps();
         });
     }
